@@ -6,6 +6,7 @@ function Banner() {
             <Image src="https://wallpaperaccess.com/full/16111.jpg" 
                 layout='fill'
                 objectFit="cover"
+                loading="lazy"
             />
             <div className="absolute w-full text-center top-1/2">
                 <p className="text-sm text-white sm:text-lg">Not sure where tyo go? Perfect.</p>

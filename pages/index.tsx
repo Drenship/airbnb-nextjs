@@ -8,12 +8,12 @@ import MediumCard from '../components/MediumCard'
 import LargeCard from '../components/LargeCard'
 import Footer from '../components/Footer'
 
-interface PropType { 
+interface Props { 
   exploreData: [];
   cardsData: [];
 }
 
-const Home: NextPage = ({ exploreData, cardsData }: PropType) => {
+const Home: NextPage<Props> = ({ exploreData, cardsData }) => {
 
   return (
     <div className="">
@@ -76,11 +76,14 @@ const Home: NextPage = ({ exploreData, cardsData }: PropType) => {
 }
 
 export async function getStaticProps() {
+
   const exploreData = await fetch('https://links.papareact.com/pyp')
     .then((res) => res.json())
+    .catch((err) => []) 
   
   const cardsData = await fetch('https://links.papareact.com/zp1')
     .then((res) => res.json())
+    .catch((err) => []) 
 
   return {
     props : {
