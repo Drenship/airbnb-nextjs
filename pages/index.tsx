@@ -8,7 +8,12 @@ import MediumCard from '../components/MediumCard'
 import LargeCard from '../components/LargeCard'
 import Footer from '../components/Footer'
 
-const Home: NextPage = ({ exploreData, cardsData }) => {
+interface PropType { 
+  exploreData: [];
+  cardsData: [];
+}
+
+const Home: NextPage = ({ exploreData, cardsData }: PropType) => {
 
   return (
     <div className="">
