@@ -18,12 +18,12 @@ const Home: NextPage<Props> = ({ exploreData, cardsData }) => {
   return (
     <div className="">
       <Head>
-        <title>Next test</title>
+        <title>Airbnb - Home</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       { /* Header */ }
-      <Header />
+      <Header placeholder='' />
 
       { /* Banner */ }
       <Banner />
@@ -35,12 +35,10 @@ const Home: NextPage<Props> = ({ exploreData, cardsData }) => {
           <h2 className="pb-5 text-4xl font-semibold">Explore Nearby</h2>
           <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
             {
-              exploreData?.map(({ img, location, distance }, key) => ( 
+              exploreData?.map((data, key) => ( 
                 <SmallCard  
                   key={key} 
-                  img={img} 
-                  location={location} 
-                  distance={distance} 
+                  data={data}
                 />
             ))}
           </div>
@@ -51,11 +49,10 @@ const Home: NextPage<Props> = ({ exploreData, cardsData }) => {
           <h2 className="py-8 text-4xl font-semibold">Live Anywehre</h2>
           <div className='flex p-3 -ml-3 space-x-3 overflow-scroll overflow-y-hidden scrollbar-hide'>
             {
-              cardsData?.map(({ title, img }, key) => (
+              cardsData?.map((data, key) => (
                 <MediumCard 
                   key={key}
-                  title={title} 
-                  img={img}
+                  data={data}
                 />
             ))}
           </div>

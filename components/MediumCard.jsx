@@ -1,6 +1,7 @@
 import Image from "next/image"
 
-function MediumCard({ img, title }) {
+function MediumCard({ data }) {
+    const { img, title } = data;
     return (
         <div className="transition duration-300 ease-out transform cursor-pointer hover:scale-105">
             <div className="relative h-80 w-80">
