@@ -6,4 +6,8 @@
     .button {
         @apply inline-flex px-4 py-2 transition duration-100 ease-out border rounded-full cursor-pointer select-none hover:shadow-lg active:scale-95 min-w-fit;
     }
+    .map {
+        
+        height: calc(100vh - 92px);
+    }
 }

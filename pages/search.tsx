@@ -7,22 +7,27 @@ import { format } from 'date-fns'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import InfoCard from '../components/InfoCard'
+import Mapbox from '../components/Mapbox'
 
 interface Props {
-  searchResuslts: []
+  searchResults: []
 }
 
-const Search: NextPage<Props> = ({ searchResuslts }) => {
+const Search: NextPage<Props> = ({ searchResults }) => {
   const [range, setRange] = useState('');
+  const [formatedStartDate, setFormatedStartDate] = useState('');
+  const [formatedEndDate, setFormatedEndDate] = useState('');
 
   const router = useRouter()
   const { location, startDate, endDate, numberOfGuests } = router.query; 
 
   useEffect(() => {
     if(!startDate || !endDate) return;
-    const formatedStartDate = format(new Date(Number(startDate)), "dd MMMM yy");
-    const formatedEndDate = format(new Date(Number(endDate)), "dd MMMM yy");
-    setRange(`- ${formatedStartDate} to ${formatedEndDate}`);
+    const initFormatedStartDate = format(new Date(Number(startDate)), "dd MMMM yy");
+    const initFormatedEndDate = format(new Date(Number(endDate)), "dd MMMM yy");
+    setFormatedStartDate(initFormatedStartDate)
+    setFormatedEndDate(initFormatedEndDate)
+    setRange(`- ${initFormatedStartDate} to ${initFormatedEndDate}`);
   }, [startDate, endDate]);
 
   return (
@@ -36,9 +41,9 @@ const Search: NextPage<Props> = ({ searchResuslts }) => {
       <Header placeholder={`${location} | ${range} | ${numberOfGuests}`} />
       
       { /* Main */ }
-      <main className='flex'>
+      <main className='flex overflow-x-hidden'>
         <section className='flex-grow w-full px-6 pt-14'>
-          <p className='text-xs'>300+ Stays {range} - for {numberOfGuests} guests</p>
+          <p className='text-xs'>300+ Stays - <span className='px-2 py-1 text-white bg-red-400 rounded'>{formatedStartDate}</span> to <span className='px-2 py-1 text-white bg-red-400 rounded'>{formatedEndDate}</span> - for {numberOfGuests} guests</p>
 
           <h1 className='mt-2 mb-6 text-3xl font-semibold'>Stays in {location}</h1>
 
@@ -49,16 +54,21 @@ const Search: NextPage<Props> = ({ searchResuslts }) => {
             <p className='button'>Rooms and Beds</p>
             <p className='button'>More filters</p>
           </div>
-
+          
+          { /* Result */ }
           <div className='flex-col mt-6'>
             {
-              searchResuslts?.map((data, key) => <InfoCard
+              searchResults?.map((data, key) => <InfoCard
                 data={data}
                 key={key}
               />)
             }
           </div>
           
+        </section>
+        { /* Map */ }
+        <section className='hidden xl:inline-flex xl:min-w-[600px] map'>
+          <Mapbox searchResults={searchResults} />
         </section>
       </main>
 
@@ -69,13 +79,13 @@ const Search: NextPage<Props> = ({ searchResuslts }) => {
 }
 
 export async function getServerSideProps() {
-  const searchResuslts = await fetch('https://links.papareact.com/isz')
+  const searchResults = await fetch('https://links.papareact.com/isz')
   .then((res) => res.json())
   .catch((err) => []) 
 
   return {
     props : {
-      searchResuslts: searchResuslts,
+      searchResults: searchResults,
     }
   }
 }
