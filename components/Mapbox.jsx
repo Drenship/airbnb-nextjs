@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import ReactMapGL, { Marker, Popup } from 'react-map-gl';
 import { getCenter } from 'geolib';
+import Image from 'next/image';
 
 function Mapbox({ searchResults }) {
     const [selectedLocation, setSelectedLocation] = useState({});
@@ -58,9 +59,20 @@ function Mapbox({ searchResults }) {
                                 closeOnClick={true}
                                 latitude={result.lat}
                                 longitude={result.long}
+                                className="z-50 w-[230px]"
                                 
                             >
-                                {result.title}
+                                <div className='flex-col'>
+                                    <div className='relative w-full h-24'>
+                                        <Image src={result.img}
+                                            layout='fill'
+                                            objectFit='cover'
+                                            className='rounded-lg'
+                                        />
+                                    </div>
+                                    <h4 className='text-sm font-semibold text-gray-500'>{result.title}</h4>
+                                </div>
+                                
                             </Popup>
                         )
                     }

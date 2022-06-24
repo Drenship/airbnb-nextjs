@@ -67,7 +67,7 @@ const Search: NextPage<Props> = ({ searchResults }) => {
           
         </section>
         { /* Map */ }
-        <section className='hidden xl:inline-flex xl:min-w-[600px] map'>
+        <section className='hidden map xl:inline-flex xl:min-w-[600px]'>
           <Mapbox searchResults={searchResults} />
         </section>
       </main>
