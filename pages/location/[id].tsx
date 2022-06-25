@@ -288,7 +288,13 @@ const Location: NextPage<Props> = ({ location }) => {
     )
 }
 
-export async function getServerSideProps(context: Object) {
+type ServerSideProps = {
+    query: {
+        id: ""
+    };
+};
+
+export async function getServerSideProps(context: ServerSideProps) {
 
     const { query: { id } } = context
 
