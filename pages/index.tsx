@@ -19,7 +19,7 @@ const Home: NextPage<Props> = ({ exploreData, cardsData }) => {
     <div className="">
       <Head>
         <title>Airbnb - Home</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="manifest" href="/site.webmanifest" />
       </Head>
 
       { /* Header */ }
@@ -33,7 +33,7 @@ const Home: NextPage<Props> = ({ exploreData, cardsData }) => {
         { /* Explore Nearby */ }
         <section className="pt-6">
           <h2 className="pb-5 text-4xl font-semibold">Explore Nearby</h2>
-          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+          <div className='grid-default'>
             {
               exploreData?.map((data, key) => ( 
                 <SmallCard  

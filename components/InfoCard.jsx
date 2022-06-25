@@ -1,11 +1,18 @@
 import { HeartIcon } from "@heroicons/react/outline";
 import { StarIcon } from "@heroicons/react/solid";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 function InfoCard({ data }) {
-    const {title, img, location, description, star, price, total, long, lat} = data
+    const {title, img, location, description, star, price, total, long, lat} = data;
+
+    const router = useRouter();
+
     return (
-        <div className="flex px-2 pr-4 transition duration-200 ease-out border-b rounded-lg cursor-pointer py-7 hover:opacity-80 hover:shadow-lg first:border-t">
+        <div 
+            onClick={() => router.push('./location/'+title)}
+            className="flex px-2 pr-4 transition duration-200 ease-out border-b rounded-lg cursor-pointer py-7 hover:opacity-80 hover:shadow-lg first:border-t"
+        >
             <div className="relative flex-shrink-0 w-40 h-24 md:w-80 md:h-52">
                 <Image src={img}
                     layout="fill"

@@ -34,7 +34,6 @@ const Search: NextPage<Props> = ({ searchResults }) => {
     <div>
       <Head>
         <title>Airbnb search - {location}</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       { /* Header */ }
@@ -48,11 +47,11 @@ const Search: NextPage<Props> = ({ searchResults }) => {
           <h1 className='mt-2 mb-6 text-3xl font-semibold'>Stays in {location}</h1>
 
           <div className='flex space-x-2 overflow-scroll text-gray-800 scrollbar-hide whitespace-nowrap'>
-            <p className='button'>Cancellation flexibility</p>
-            <p className='button'>Type of place</p>
-            <p className='button'>Price</p>
-            <p className='button'>Rooms and Beds</p>
-            <p className='button'>More filters</p>
+            <p className='button-filters'>Cancellation flexibility</p>
+            <p className='button-filters'>Type of place</p>
+            <p className='button-filters'>Price</p>
+            <p className='button-filters'>Rooms and Beds</p>
+            <p className='button-filters'>More filters</p>
           </div>
           
           { /* Result */ }

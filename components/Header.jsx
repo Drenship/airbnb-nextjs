@@ -28,7 +28,8 @@ function Header({ placeholder }) {
 
     const _resetInput = () => setSearchInput('')
     
-    const _search = (e) => {
+    const _search = () => {
+        if(searchInput.length === 0) return;
         router.push({
             pathname: '/search',
             query: {
@@ -60,6 +61,12 @@ function Header({ placeholder }) {
                 <input 
                     value={searchInput}
                     onChange={(e) => setSearchInput(e.target.value)}
+                    onKeyDown={(e) =>{
+                        if(e.key === 'Enter'){
+                            setSearchInput(e.target.value);
+                            _search();
+                        }
+                    }}
                     className="flex-grow pl-5 bg-transparent outline-none" 
                     type='text' 
                     placeholder={placeholder || "Start your search"} 

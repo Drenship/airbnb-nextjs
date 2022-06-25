@@ -3,11 +3,39 @@
 @tailwind utilities;
 
 @layer components {
-    .button {
+
+
+    .grid-default {
+        @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4
+    }
+
+    .button-filters {
         @apply inline-flex px-4 py-2 transition duration-100 ease-out border rounded-full cursor-pointer select-none hover:shadow-lg active:scale-95 min-w-fit;
     }
+
     .map {
-        
         height: calc(100vh - 92px);
+    }
+    
+    .item-equipements {
+        @apply flex items-center mt-2 space-x-2 font-semibold text-gray-800;
+    }
+
+    .input-number-style {
+        @apply w-full text-center outline-none appearance-none h-[36px];
+        -moz-appearance: textfield;
+    }
+
+    .input-number-style::-webkit-outer-spin-button, .input-number-style::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+    }
+
+    .input-number-button {
+        @apply border border-gray-900 rounded-full min-w-[36px] max-w-[36px] max-h-[36px] min-h-[36px]
+            flex items-center text-center justify-center font-bold text-xl transition duration-100 ease-out
+            text-gray-900 hover:shadow-lg hover:border-gray-900 
+            hover:text-gray-900 
+            active:scale-95 
+            disabled:text-gray-300 disabled:border-gray-300;
     }
 }
