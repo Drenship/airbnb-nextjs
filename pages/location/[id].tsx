@@ -294,6 +294,10 @@ type ServerSideProps = {
     };
 };
 
+type ResultsFilter = {
+    title: '';
+};
+
 export async function getServerSideProps(context: ServerSideProps) {
 
     const { query: { id } } = context
@@ -302,7 +306,7 @@ export async function getServerSideProps(context: ServerSideProps) {
     .then((res) => res.json())
     .catch((err) => []) 
   
-    const filterLocation = searchResults.filter((s: Object) => s.title === id)[0] || {}
+    const filterLocation = searchResults.filter((s: ResultsFilter) => s.title === id)[0] || {}
     return {
       props : {
         location: filterLocation
