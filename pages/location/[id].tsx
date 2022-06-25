@@ -10,10 +10,14 @@ import InputNumber from '../../components/InputNumber'
 
 interface Props {
     location: {
-        title: '',
+        title: String,
         img: '',
-    };
+    },
+    query: {
+        id: String
+    }
 }
+
 
 const Location: NextPage<Props> = ({ location }) => {
 
@@ -55,6 +59,18 @@ const Location: NextPage<Props> = ({ location }) => {
                                     className='rounded-full'
                                 />
                             </div>
+                        </div>
+
+                        <div className='mt-5 border-t'>
+                            <div className='flex justify-between pt-5'>
+                                <div>
+                                    <h4 className='text-lg font-bold text-gray-900'>Christelle L</h4>
+                                    <p className='text-sm text-gray-400'>Membre depuis 2022</p>
+                                </div>
+                                <button className='h-10 px-4 font-semibold transition duration-200 ease-out border rounded-full hover:shadow-xl active:scale-95'>Contacter l'hôte</button>
+                            </div>
+
+                            <p className='text-gray-800'>Je loue ma piscine pour que des gens viennent se détendre à la campagne au calme et puisse profiter des activités dans le jardin</p>
                         </div>
                         
                         <div className='border-t pt-7 my-7'>
@@ -219,7 +235,7 @@ const Location: NextPage<Props> = ({ location }) => {
                     
                     { /* right card */}
                     <section className='border-t pt-7 lg:ml-7 lg:pt-0 lg:border-none'>
-                        <div className='mx-auto w-[360px] shadow-lg border rounded-3xl flex flex-col p-8'>
+                        <div className='mx-auto w-full sm:w-[360px] shadow-lg border rounded-3xl flex flex-col p-8'>
                             <h3 className='text-xl font-bold'>30€ <span className='text-sm font-normal text-gray-800'>/ h</span></h3>
                             <p className='text-sm text-gray-400'>jusqu'à 5 pers. incluses</p>
 
@@ -288,29 +304,19 @@ const Location: NextPage<Props> = ({ location }) => {
     )
 }
 
-type ServerSideProps = {
-    query: {
-        id: ""
-    };
-};
-
-type ResultsFilter = {
-    title: '';
-};
-
-export async function getServerSideProps(context: ServerSideProps) {
+export async function getServerSideProps(context: Props) {
 
     const { query: { id } } = context
 
     const searchResults = await fetch('https://links.papareact.com/isz')
-    .then((res) => res.json())
-    .catch((err) => []) 
+        .then((res) => res.json())
+        .catch((err) => {}) 
   
-    const filterLocation = searchResults.filter((s: ResultsFilter) => s.title === id)[0] || {}
+    const filterLocation = searchResults.filter((s: Props['location']) => s.title === id)[0] || {}
     return {
-      props : {
-        location: filterLocation
-      }
+        props : {
+            location: filterLocation
+        }
     }
   }
 
