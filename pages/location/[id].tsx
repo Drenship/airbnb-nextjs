@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image';
-import { CheckIcon, GiftIcon, SparklesIcon, TicketIcon, XIcon } from '@heroicons/react/solid';
+import { CheckIcon, AnnotationIcon, GiftIcon, SparklesIcon, StarIcon, TicketIcon, XIcon } from '@heroicons/react/solid';
 import { ExclamationCircleIcon } from '@heroicons/react/outline';
 // components
 import Header from '../../components/Header'
@@ -10,8 +10,10 @@ import InputNumber from '../../components/InputNumber'
 
 interface Props {
     location: {
-        title: String,
         img: '',
+        title: String,
+        description: String,
+        star: number,
     },
     query: {
         id: String
@@ -36,7 +38,7 @@ const Location: NextPage<Props> = ({ location }) => {
             <main className="px-8 mx-auto max-w-7xl sm:px-16">
                 
                 { /* image of location */ }
-                <div className='relative w-full overflow-hidden h-96 mt-14 rounded-xl'>
+                <div className='relative w-full overflow-hidden cursor-pointer h-96 mt-14 rounded-xl'>
                     <Image src={location.img} 
                         layout='fill'
                         objectFit='cover'
@@ -61,21 +63,25 @@ const Location: NextPage<Props> = ({ location }) => {
                             </div>
                         </div>
 
-                        <div className='mt-5 border-t'>
-                            <div className='flex justify-between pt-5'>
+                        <div className='border-t mt-7'>
+                            <div className='flex justify-between pt-7'>
                                 <div>
-                                    <h4 className='text-lg font-bold text-gray-900'>Christelle L</h4>
+                                    <div className='flex space-x-2'>
+                                        <h4 className='text-lg font-bold text-gray-900'>Christelle L</h4>
+                                        <StarIcon className='w-5 text-yellow-400' />
+                                        <span className='font-bold'>{location.star}</span>
+                                    </div>
                                     <p className='text-sm text-gray-400'>Membre depuis 2022</p>
                                 </div>
-                                <button className='h-10 px-4 font-semibold transition duration-200 ease-out border rounded-full hover:shadow-xl active:scale-95'>Contacter l'hôte</button>
+                                <button className='h-10 px-4 font-semibold border rounded-full button-click-effect'>Contacter l'hôte</button>
                             </div>
 
-                            <p className='text-gray-800'>Je loue ma piscine pour que des gens viennent se détendre à la campagne au calme et puisse profiter des activités dans le jardin</p>
+                            <p className='mt-3 text-gray-800'>{location.description}</p>
                         </div>
                         
                         <div className='border-t pt-7 my-7'>
                             <h3 className='text-2xl font-bold'>Équipements</h3>
-                            <div className='pt-4 grid-default'>
+                            <div className='pt-4 grid-default xl:grid-cols-3'>
                                 <p className='item-equipements'>
                                     <span><CheckIcon className='h-5 text-blue-500'/></span>
                                     <span>🌡️</span> 
@@ -284,7 +290,7 @@ const Location: NextPage<Props> = ({ location }) => {
                                 </div>
                             </div>
                             
-                            <button className='w-full py-3 font-semibold text-white transition ease-out bg-blue-500 rounded-lg cursor-pointer mt-7 active:scale-95 duratrion-200 hover:shadow-lg hover:bg-blue-600'>
+                            <button className='w-full py-3 font-semibold text-white bg-blue-500 rounded-lg cursor-pointer mt-7 hover:shadow-lg hover:bg-blue-600 button-click-effect'>
                                 Réserver pour 90€
                             </button>
 
@@ -293,8 +299,73 @@ const Location: NextPage<Props> = ({ location }) => {
                     </section>
                 </div>
 
-                { /* Commentaire */}
-                <section  className='border-t pt-7 my-7'></section>
+                { /* Commentaire section */}
+                <section  className='border-t pt-7 my-7'>
+                    <h3 className='flex text-xl font-bold'><AnnotationIcon className='w-5 mr-2' /> 2 commentaires</h3>
+                    { /* Commentaires container */}
+                    <div className='grid grid-cols-1 space-x-3 lg:grid-cols-2'>
+                        
+                        { /* Commentaire item */}
+                        <div className='mt-5'>
+                            <div className='flex justify-start space-x-3'>
+                                <div className='relative w-14 h-14'>
+                                    <Image src="https://pbs.twimg.com/profile_images/1540027700961845257/5b4MViX2_400x400.jpg" 
+                                        layout='fill'
+                                        objectFit='cover'
+                                        className='rounded-full'
+                                    />
+                                </div>
+                                <div>
+                                    <h4 className='font-semibold'>Milhan M</h4>
+                                    <p className='flex space-x-2'>
+                                        <span className='flex'>
+                                            <StarIcon className='w-5 text-yellow-400' />
+                                            <StarIcon className='w-5 text-yellow-400' />
+                                            <StarIcon className='w-5 text-yellow-400' />
+                                            <StarIcon className='w-5 text-yellow-400' />
+                                            <StarIcon className='w-5 text-gray-400' />
+                                        </span>
+                                        <span className='text-gray-400'>•</span>
+                                        <span className='text-gray-400'>juin 2022</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <p className='px-2 py-4'>Cadre sublime 😍 Mathis super gentil merci de nous avoir accueillis, il nous a mis à l’aise et nous a proposé à plusieurs reprises si on voulait boire quelque chose ou manger une glace lol super gentil et très discret franchement top, je vous recommande ce lieu qui est identique à la description</p>
+                        </div>
+
+                        <div className='mt-5'>
+                            <div className='flex justify-start space-x-3'>
+                                <div className='relative w-14 h-14'>
+                                    <Image src="https://pbs.twimg.com/profile_images/1518217670197448704/AThykk36_200x200.jpg" 
+                                        layout='fill'
+                                        objectFit='cover'
+                                        className='rounded-full'
+                                    />
+                                </div>
+                                <div>
+                                    <h4 className='font-semibold'>Yacine K</h4>
+                                    <p className='flex space-x-2'>
+                                        <span className='flex'>
+                                            <StarIcon className='w-5 text-yellow-400' />
+                                            <StarIcon className='w-5 text-yellow-400' />
+                                            <StarIcon className='w-5 text-yellow-400' />
+                                            <StarIcon className='w-5 text-yellow-400' />
+                                            <StarIcon className='w-5 text-yellow-400' />
+                                        </span>
+                                        <span className='text-gray-400'>•</span>
+                                        <span className='text-gray-400'>août 2021</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <p className='px-2 py-4'>Juste un mot magnifique ! La piscine est encore plus belle en vraie ! Vraiment top ! Calme et tranquillité assurés… c’est vraiment la plus belle piscine du sud que j’ai pu testé ! Je reviendrais à bientôt</p>
+                        </div>
+
+
+                    </div>
+
+                    <button className='block px-4 py-4 mx-auto mt-5 border rounded-full button-click-effect'>Afficher plus de commentaires</button>
+
+                </section>
 
             </main>
 

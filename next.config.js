@@ -7,7 +7,8 @@ module.exports = {
       "wallpaperaccess.com", 
       "links.papareact.com", 
       "a0.muscache.com",
-      "i.ytimg.com"
+      "i.ytimg.com",
+      "pbs.twimg.com"
     ],
   },
   env: {

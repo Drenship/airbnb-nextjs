@@ -4,13 +4,16 @@
 
 @layer components {
 
-
     .grid-default {
         @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4
     }
 
+    .button-click-effect {
+        @apply transition duration-200 ease-out hover:shadow-lg active:scale-95;
+    }
+
     .button-filters {
-        @apply inline-flex px-4 py-2 transition duration-100 ease-out border rounded-full cursor-pointer select-none hover:shadow-lg active:scale-95 min-w-fit;
+        @apply inline-flex px-4 py-2 border rounded-full cursor-pointer select-none min-w-fit button-click-effect;
     }
 
     .map {
