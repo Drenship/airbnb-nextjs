@@ -14,7 +14,7 @@ const Login: NextPage<Props> = () => {
   const [showPass, setShowPass] = useState(false)
 
   return (
-    <BaseScreen title="Login">
+    <BaseScreen title="Login" headerPlaceholder=''>
         
         <form className='w-full mx-auto border my-20 p-7 rounded-xl shadow-xl max-w-[380px]'>
           <div className='flex items-center space-x-3'>

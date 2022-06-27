@@ -4,7 +4,7 @@ import Header from './Header'
 import Footer from './Footer'
 
 
-const BaseScreen = ({title, children }) => {
+const BaseScreen = ({title, headerPlaceholder, children }) => {
 
   return (
     <div className="">
@@ -13,7 +13,7 @@ const BaseScreen = ({title, children }) => {
       </Head>
 
       { /* Header */ }
-      <Header placeholder='' />
+      <Header placeholder={headerPlaceholder || ''} />
 
       { /* Mainsite */ }
       <main className="px-8 mx-auto max-w-7xl sm:px-16">

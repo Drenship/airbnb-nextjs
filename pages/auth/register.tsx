@@ -8,7 +8,7 @@ interface Props {
 const Register: NextPage<Props> = () => {
 
   return (
-    <BaseScreen title="Login">
+    <BaseScreen title="Register" headerPlaceholder=''>
 
         <h1>Register</h1>
 
