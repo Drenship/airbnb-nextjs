@@ -16,6 +16,14 @@
         @apply inline-flex px-4 py-2 border rounded-full cursor-pointer select-none min-w-fit button-click-effect;
     }
 
+    .button-primary {
+        @apply w-full py-3 font-semibold text-white bg-blue-500 rounded-lg cursor-pointer mt-7 hover:shadow-lg hover:bg-blue-600 button-click-effect;
+    }
+
+    .button-primary-green {
+        @apply button-primary bg-green-500 hover:bg-green-600
+    }
+
     .map {
         height: calc(100vh - 92px);
     }

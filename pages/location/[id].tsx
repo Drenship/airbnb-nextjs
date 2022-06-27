@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image';
+import { useEffect, useRef } from 'react';
 import { CheckIcon, AnnotationIcon, GiftIcon, SparklesIcon, StarIcon, TicketIcon, XIcon } from '@heroicons/react/solid';
 import { ExclamationCircleIcon } from '@heroicons/react/outline';
 // components
@@ -22,7 +23,6 @@ interface Props {
 
 
 const Location: NextPage<Props> = ({ location }) => {
-
     console.log("location", location)
 
     return (
@@ -290,7 +290,7 @@ const Location: NextPage<Props> = ({ location }) => {
                                 </div>
                             </div>
                             
-                            <button className='w-full py-3 font-semibold text-white bg-blue-500 rounded-lg cursor-pointer mt-7 hover:shadow-lg hover:bg-blue-600 button-click-effect'>
+                            <button className='button-primary'>
                                 Réserver pour 90€
                             </button>
 

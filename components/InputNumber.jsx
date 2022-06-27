@@ -1,5 +1,5 @@
 import { MinusSmIcon, PlusSmIcon } from "@heroicons/react/solid";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 
 function InputNumber({ value, minCount, maxCount, inputName }) {
 

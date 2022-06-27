@@ -83,16 +83,15 @@ function Header({ placeholder }) {
         <header className="sticky top-0 z-50 grid grid-cols-3 px-5 py-5 bg-white shadow-md md:px-10">
 
             { /* left logo */ }
-            <div 
-                onClick={() => router.push('/')}
-                className="relative flex items-center h-10 my-auto cursor-pointer"
-            >
-                <Image src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/1280px-Airbnb_Logo_B%C3%A9lo.svg.png" 
-                    layout="fill"
-                    objectFit="contain"
-                    objectPosition="left"
-                />
-            </div>
+            <Link href='/'>
+                <a className="relative flex items-center h-10 my-auto cursor-pointer">
+                    <Image src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/1280px-Airbnb_Logo_B%C3%A9lo.svg.png" 
+                        layout="fill"
+                        objectFit="contain"
+                        objectPosition="left"
+                    />
+                </a>
+            </Link>
 
             { /* center search */ }
             <div className="flex items-center py-2 rounded-full md:border-2 md:shadow-sm">
