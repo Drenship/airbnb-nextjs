@@ -367,6 +367,7 @@ export async function getServerSideProps(context: Props) {
         .catch((err) => {}) 
   
     const filterLocation = searchResults.filter((s: Props['location']) => s.title === id)[0] || {}
+
     return {
         props : {
             location: filterLocation

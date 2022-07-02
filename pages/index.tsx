@@ -3,9 +3,9 @@ import Head from 'next/head'
 // components
 import Header from '../components/Header'
 import Banner from '../components/Banner'
-import SmallCard from '../components/SmallCard'
-import MediumCard from '../components/MediumCard'
-import LargeCard from '../components/LargeCard'
+import SmallCard from '../components/cards/SmallCard'
+import MediumCard from '../components/cards/MediumCard'
+import LargeCard from '../components/cards/LargeCard'
 import Footer from '../components/Footer'
 
 interface Props { 

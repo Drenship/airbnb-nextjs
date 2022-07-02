@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/SmallCard.jsx", "components/MediumCard.jsx", "components/LargeCard.jsx", "components/Header.tsx", "components/Footer.jsx", "components/Banner.jsx", "pages/index.js", "components/BaseScreen.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/cards/SmallCard.jsx", "components/MediumCard.jsx", "components/LargeCard.jsx", "components/Header.tsx", "components/Footer.jsx", "components/Banner.jsx", "pages/index.js", "components/BaseScreen.jsx"],
   "exclude": ["node_modules"]
 }

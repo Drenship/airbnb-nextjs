@@ -49,4 +49,11 @@
             active:scale-95 
             disabled:text-gray-300 disabled:border-gray-300;
     }
+
+    .sidebar {
+        @apply right-[-300px] hidden;
+    }
+    .sidebar.active {
+        @apply right-0 block !important;
+    }
 }

@@ -90,6 +90,7 @@ function Header({ placeholder }) {
                         objectFit="contain"
                         objectPosition="left"
                     />
+                    <div className='absolute top-0 left-0 w-full h-full'></div>
                 </a>
             </Link>
 
@@ -155,7 +156,7 @@ function Header({ placeholder }) {
             }
 
             { /* Sidebar */ }
-            <div className={`absolute top-0 z-50 w-full h-[100vh] bg-white border-l shadow-xl sm:w-[300px] transition duration-200 ${openSidebar ? 'right-0' : 'right-[-300px] hidden'}`}>
+            <div className={`absolute top-0 z-50 w-full h-[100vh] bg-white border-l shadow-xl sm:w-[300px] transition duration-20 sidebar ${openSidebar ? 'active' : ''}`}>
                 <h3 className="p-4 text-xl font-bold">Menu</h3>
                 <Link href="/">
                     <a className="flex p-4 font-semibold border-t border-b cursor-pointer button-click-effect"><HomeIcon className="w-5 mr-2" />Accueil</a>

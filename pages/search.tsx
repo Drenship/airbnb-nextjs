@@ -6,7 +6,7 @@ import { format } from 'date-fns'
 // components
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import InfoCard from '../components/InfoCard'
+import InfoCard from '../components/cards/InfoCard'
 import Mapbox from '../components/Mapbox'
 
 interface Props {
@@ -34,6 +34,7 @@ const Search: NextPage<Props> = ({ searchResults }) => {
     <div>
       <Head>
         <title>Airbnb search - {location}</title>
+        <link rel="manifest" href="/site.webmanifest" />
       </Head>
 
       { /* Header */ }

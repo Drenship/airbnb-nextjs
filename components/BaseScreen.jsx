@@ -10,6 +10,7 @@ const BaseScreen = ({title, headerPlaceholder, children }) => {
     <div className="">
       <Head>
         <title>Airbnb - {title}</title>
+        <link rel="manifest" href="/site.webmanifest" />
       </Head>
 
       { /* Header */ }
