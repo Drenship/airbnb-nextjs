@@ -6,6 +6,7 @@ import { SyntheticEvent, useEffect, useState } from 'react'
 
 // components
 import HostAddLocationCard from '../../components/cards/HostAddLocationCard'
+import Step3 from '../../components/hostAddLocationStep/Step3';
 import Step4 from '../../components/hostAddLocationStep/Step4';
 import Step5 from '../../components/hostAddLocationStep/Step5';
 import Step7 from '../../components/hostAddLocationStep/Step7';
@@ -25,6 +26,8 @@ const Host: NextPage<Props> = ({ locationsTypeSelection }) => {
 
   const [step, setStep] = useState(1)
   const [locationType, setLocationType] = useState(null); // step 1 - input
+
+  const [geoLocationSelected, setGeoLocationSelected] = useState(null); // step 4 - coordinate
   
   const [title, setTitle] = useState(''); // step 4 - input
   const [description, setDescription] = useState(''); // step 4 - input
@@ -61,7 +64,7 @@ const Host: NextPage<Props> = ({ locationsTypeSelection }) => {
 
     // step 3
     if(3 === step) {
-      const _next = locationType !== null
+      const _next = geoLocationSelected !== null
       updateStep(_next)
     }
 
@@ -92,6 +95,8 @@ const Host: NextPage<Props> = ({ locationsTypeSelection }) => {
     if(step !== lastStep) return;
     const sendFormData = {
       locationType: locationType,
+
+      geoLocation: geoLocationSelected,
 
       title: title,
       description: description,
@@ -183,7 +188,9 @@ const Host: NextPage<Props> = ({ locationsTypeSelection }) => {
 
                   { /* STEP 3 */}
                   { step === 3 && 
-                    <h3 className='text-lg font-semibold'>Etape 3: Localisation</h3>
+                    <Step3 
+                      setReturnGeoLocationSelected={setGeoLocationSelected}
+                    />
                   }
 
                   { /* STEP 4 */}
@@ -251,24 +258,24 @@ export async function getStaticProps() {
 
   const locationsTypeSelection = [{
     _id: "1",
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_Y2yw7qnCFqfOgkPmRNGN82jHGdbQ-OWlhw&usqp=CAU",
-    type: 'Piscine',
-    description: "bbudsvbozusidv  ndszouv zod^_jvùZDPOIM?VC ZDÖPIFGVHZEDoifazepùfvhbre vdpç ghrzov bfdqkmu ,qdsP9%FVRZEUFGOZDSNVEFQ%O8V QREFDZ9HR"
-  },{
-    _id: "2",
     img: "https://media-cdn.tripadvisor.com/media/vr-splice-j/09/46/c2/88.jpg",
     type: 'Appartent',
     description: "dvgil du kgfd poufhdo dqsnf oupdz vnv ZSDGO8  NGFEZD7b ngfomlubl pùfd b^o_gsfdhbdf dvn hqdfoidfi oiu fo ifd boiowdpfhbdf dfloi f !"
   },{
-    _id: "3",
+    _id: "2",
     img: "https://www.trecobois.fr/wp-content/uploads/2020/06/constructeur-maison-bois-sur-mesure-trecobois.jpg",
     type: 'Maison',
     description: "dvgil du kgfd poufhdo dqsnf oupdz vnv ZSDGO8  NGFEZD7b ngfomlubl pùfd b^o_gsfdhbdf dvn hqdfoidfi oiu fo ifd boiowdpfhbdf dfloi f !"
   },{
+    _id: "3",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_Y2yw7qnCFqfOgkPmRNGN82jHGdbQ-OWlhw&usqp=CAU",
+    type: 'Piscine',
+    description: "bbudsvbozusidv  ndszouv zod^_jvùZDPOIM?VC ZDÖPIFGVHZEDoifazepùfvhbre vdpç ghrzov bfdqkmu ,qdsP9%FVRZEUFGOZDSNVEFQ%O8V QREFDZ9HR"
+  },{
     _id: "4",
     img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Green_field.jpg/250px-Green_field.jpg",
     type: 'Champ',
-    description: "dvgil du kgfd poufhdo dqsnf oupdz vnv ZSDGO8  NGFEZD7b ngfomlubl pùfd b^o_gsfdhbdf dvn hqdfoidfi oiu fo ifd boiowdpfhbdf dfloi f !"
+    description: "Vous avez un champ que vous n'utilisez pas, que se soit pour y mettre des animaux, l'utiliser pour l'agriculture ou faire des balo des pailles, metter le en location !"
   }];
 
   return {
