@@ -1,17 +1,26 @@
+import { LocationMarkerIcon } from "@heroicons/react/solid";
 import { useEffect, useState } from "react";
 import ReactMapGL, { Marker } from 'react-map-gl';
 
 import Loader from '../Loader';
 
-function Step3({ setReturnGeoLocationSelected }) {
-    const [geoLocation, setGeoLocation] = useState('');
+function Step3({ geoLocationSelected, setReturnGeoLocationSelected }) {
+    const [geoLocation, setGeoLocation] = useState(geoLocationSelected ? geoLocationSelected.place_name : '');
     const [geoSuggestList, setGeoSuggestList] = useState([]);
     const [loaded, setLoaded] = useState(false);
+
+
+    const latLong = geoLocationSelected 
+        ? {
+            latitude: Number(geoLocationSelected?.center[1]),
+            longitude: Number(geoLocationSelected?.center[0])
+        }
+        : {
+            latitude: 48.856614,
+            longitude: 2.3522219
+        }
     
-    const [coordinate, setCoordinate] = useState({
-        latitude: 48.856614,
-        longitude: 2.3522219
-    });
+    const [coordinate, setCoordinate] = useState(latLong);
 
     const [viewport, setViewport] = useState({
         width: "100%",
@@ -85,7 +94,9 @@ function Step3({ setReturnGeoLocationSelected }) {
                             longitude={coordinate.longitude}
                             latitude={coordinate.latitude}
                         >
-                            <p role='img' className='text-2xl cursor-pointer animate-bounce' aria-label='push-pin'>📌</p>
+                            <p role='img' className='text-2xl cursor-pointer animate-bounce' aria-label='push-pin'>
+                                <LocationMarkerIcon className="text-red-700 w-7" />
+                            </p>
                         </Marker>
                     </ReactMapGL>
                     {

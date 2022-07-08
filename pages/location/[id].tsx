@@ -1,10 +1,12 @@
 import type { NextPage } from 'next'
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 import { CheckIcon, AnnotationIcon, GiftIcon, SparklesIcon, StarIcon, TicketIcon, XIcon } from '@heroicons/react/solid';
 import { ExclamationCircleIcon } from '@heroicons/react/outline';
 // components
 import InputNumber from '../../components/InputNumber'
 import BaseScreen from '../../components/BaseScreen';
+import CommentaireCard from '../../components/cards/CommentaireCard';
 
 interface Props {
     location: {
@@ -12,7 +14,7 @@ interface Props {
         title: String,
         description: String,
         star: number,
-    },
+    }
     query: {
         id: String
     }
@@ -21,6 +23,21 @@ interface Props {
 
 const Location: NextPage<Props> = ({ location }) => {
     console.log("location", location)
+
+    const [commentaires, setCommentaires] = useState<any>([]);
+
+    const getCommentaires = async () => {
+      try {
+        const searchResults = await fetch('/api/commentaires')
+          .then((res) => res.json())
+          .catch((err) => []) 
+        setCommentaires([...commentaires, ...searchResults])
+      } catch {
+        setCommentaires([])
+      }
+    }
+
+    useEffect(() => { getCommentaires(); }, []);
 
     return (
         <BaseScreen title={location.title} headerPlaceholder=''>
@@ -291,66 +308,23 @@ const Location: NextPage<Props> = ({ location }) => {
                 <h3 className='flex text-xl font-bold'><AnnotationIcon className='w-5 mr-2' /> 2 commentaires</h3>
                 { /* Commentaires container */}
                 <div className='grid grid-cols-1 space-x-3 lg:grid-cols-2'>
-                    
-                    { /* Commentaire item */}
-                    <div className='mt-5'>
-                        <div className='flex justify-start space-x-3'>
-                            <div className='relative w-14 h-14'>
-                                <Image src="https://pbs.twimg.com/profile_images/1540027700961845257/5b4MViX2_400x400.jpg" 
-                                    layout='fill'
-                                    objectFit='cover'
-                                    className='rounded-full'
-                                />
-                            </div>
-                            <div>
-                                <h4 className='font-semibold'>Milhan M</h4>
-                                <p className='flex space-x-2'>
-                                    <span className='flex'>
-                                        <StarIcon className='w-5 text-yellow-400' />
-                                        <StarIcon className='w-5 text-yellow-400' />
-                                        <StarIcon className='w-5 text-yellow-400' />
-                                        <StarIcon className='w-5 text-yellow-400' />
-                                        <StarIcon className='w-5 text-gray-400' />
-                                    </span>
-                                    <span className='text-gray-400'>•</span>
-                                    <span className='text-gray-400'>juin 2022</span>
-                                </p>
-                            </div>
-                        </div>
-                        <p className='px-2 py-4'>Cadre sublime 😍 Mathis super gentil merci de nous avoir accueillis, il nous a mis à l’aise et nous a proposé à plusieurs reprises si on voulait boire quelque chose ou manger une glace lol super gentil et très discret franchement top, je vous recommande ce lieu qui est identique à la description</p>
-                    </div>
-
-                    <div className='mt-5'>
-                        <div className='flex justify-start space-x-3'>
-                            <div className='relative w-14 h-14'>
-                                <Image src="https://pbs.twimg.com/profile_images/1518217670197448704/AThykk36_200x200.jpg" 
-                                    layout='fill'
-                                    objectFit='cover'
-                                    className='rounded-full'
-                                />
-                            </div>
-                            <div>
-                                <h4 className='font-semibold'>Yacine K</h4>
-                                <p className='flex space-x-2'>
-                                    <span className='flex'>
-                                        <StarIcon className='w-5 text-yellow-400' />
-                                        <StarIcon className='w-5 text-yellow-400' />
-                                        <StarIcon className='w-5 text-yellow-400' />
-                                        <StarIcon className='w-5 text-yellow-400' />
-                                        <StarIcon className='w-5 text-yellow-400' />
-                                    </span>
-                                    <span className='text-gray-400'>•</span>
-                                    <span className='text-gray-400'>août 2021</span>
-                                </p>
-                            </div>
-                        </div>
-                        <p className='px-2 py-4'>Juste un mot magnifique ! La piscine est encore plus belle en vraie ! Vraiment top ! Calme et tranquillité assurés… c’est vraiment la plus belle piscine du sud que j’ai pu testé ! Je reviendrais à bientôt</p>
-                    </div>
-
-
+                    { /* Commentaires */}
+                    {
+                        commentaires?.map((item: any, key: any) => <CommentaireCard 
+                            key={key}
+                            img={ item.img }
+                            name={ item.name }
+                            rating={ item.rating }
+                            description={ item.description }
+                            date={ item.date }
+                        />)
+                    }
                 </div>
 
-                <button className='block px-4 py-4 mx-auto mt-5 border rounded-full button-click-effect'>Afficher plus de commentaires</button>
+                <button 
+                    className='block px-4 py-4 mx-auto mt-5 border rounded-full button-click-effect'
+                    onClick={getCommentaires}
+                >Afficher plus de commentaires</button>
 
             </section>
 

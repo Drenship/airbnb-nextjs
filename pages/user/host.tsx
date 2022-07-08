@@ -14,13 +14,19 @@ import NavigationFooter from '../../components/hostAddLocationStep/NavigationFoo
 
 //utils
 import _onTextareaAutosize from '../../utils/TextAreaAutosize'
+import { CakeIcon } from '@heroicons/react/outline'
 
 
 interface Props { 
   locationsTypeSelection: []
+  optionsInLocation: {
+    equipementsCommun: []
+    equipementsVoyageurs: []
+    equipementsSecurite: []
+  }
 }
 
-const Host: NextPage<Props> = ({ locationsTypeSelection }) => {
+const Host: NextPage<Props> = ({ locationsTypeSelection, optionsInLocation }) => {
 
   const [scroll, setScroll] = useState(false)
 
@@ -37,7 +43,7 @@ const Host: NextPage<Props> = ({ locationsTypeSelection }) => {
 
   const [serviceList, setServiceList] = useState<any>([]); // step 7 - array [list]
 
-  const lastStep = 8;
+  const lastStep = 9;
 
   const _backStepFrom = () => {
     const backStep = step > 1 ? (step - 1) : step
@@ -88,6 +94,11 @@ const Host: NextPage<Props> = ({ locationsTypeSelection }) => {
 
     // step 7
     if(7 === step) updateStep(true)
+
+    // step 8
+    if(8 === step) updateStep(true)
+    
+    updateStep(true)
 
   }
   
@@ -189,6 +200,7 @@ const Host: NextPage<Props> = ({ locationsTypeSelection }) => {
                   { /* STEP 3 */}
                   { step === 3 && 
                     <Step3 
+                      geoLocationSelected={geoLocationSelected}
                       setReturnGeoLocationSelected={setGeoLocationSelected}
                     />
                   }
@@ -214,9 +226,62 @@ const Host: NextPage<Props> = ({ locationsTypeSelection }) => {
 
                   { /* STEP 6 */}
                   { step === 6 && 
-                    <div>
+                    <div className='flex flex-col'>
                       <h3 className='text-lg font-semibold'>Etape 6: Description avancées options ...</h3>
+                      
+                        
+                        <p className='mt-10'>Possédez-vous des équipements hors du commun ?</p>
+                        <div className='grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4'>
+                          {
+                            optionsInLocation?.equipementsCommun?.map((item: any, key: any) => <div key={key} className='inline-block my-2 cursor-pointer'>
+                              <label htmlFor={`commun-${item._id}`}>
+                                <input type="checkbox" className='hidden' id={`commun-${item._id}`}/>
+                                <span className='checkbox-location-option'>
+                                  <span>
+                                    <CakeIcon className='checkbox-location-icon' />
+                                  </span>
+                                  <span className='checkbox-location-title'>{ item.name }</span>
+                                </span>
+                              </label>
+                            </div>)
+                          }
+                        </div>
 
+                        <p className='mt-10'>Qu'en est-il de ces équipements préférés des voyageurs ?</p>
+                        <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 grid-col-2'>
+                          {
+                            optionsInLocation?.equipementsVoyageurs?.map((item: any, key: any) => <div key={key} className='inline-block my-2 cursor-pointer'>
+                              <label htmlFor={`voyagers-${item._id}`}>
+                                <input type="checkbox" className='hidden' id={`voyagers-${item._id}`}/>
+                                <span className='checkbox-location-option'>
+                                  <span>
+                                    <CakeIcon className='checkbox-location-icon' />
+                                  </span>
+                                  <span className='checkbox-location-title'>{ item.name }</span>
+                                </span>
+                              </label>
+                            </div>)
+                          }
+                        </div>
+
+                        <p className='mt-10'>Possédez-vous ces équipements de sécurité ?</p>
+                        <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 grid-col-2'>
+                          {
+                            optionsInLocation?.equipementsSecurite?.map((item: any, key: any) => <div key={key} className='inline-block my-2 cursor-pointer'>
+                              <label htmlFor={`securitys-${item._id}`}>
+                                <input type="checkbox" className='hidden' id={`securitys-${item._id}`}/>
+                                <span className='checkbox-location-option'>
+                                  <span>
+                                    <CakeIcon className='checkbox-location-icon' />
+                                  </span>
+                                  <span className='checkbox-location-title'>{ item.name }</span>
+                                </span>
+                              </label>
+                            </div>)
+                          }
+                        </div>
+
+  
                     </div>
                   }
 
@@ -230,7 +295,43 @@ const Host: NextPage<Props> = ({ locationsTypeSelection }) => {
 
                   { /* STEP 8 */}
                   { step === 8 && 
-                    <h3 className='text-lg font-semibold'>Etape 8: Reviews avant de publier</h3>
+                    <div className='flex flex-col'>
+                      <h3 className='text-lg font-semibold'>Quel type d'activité d'hôte exercez-vous sur Airbnb ?</h3>
+                      <div className='flex flex-col'>
+                        <div className='flex items-center justify-between'>
+                          <label htmlFor="particulietr">J'accueille des voyageurs en tant que particulier</label>
+                          <input id="particulietr" type="radio" name="type_activity" />
+                        </div>
+                        <div className='flex items-center justify-between'>
+                          <label htmlFor="professionnel">J'accueille des voyageurs en tant que professionnel</label>
+                          <input id="professionnel" type="radio" name="type_activity" />
+                        </div>
+                      </div>
+
+                      <h3 className='mt-10 text-lg font-semibold'>Votre logement comprend-il les éléments suivants ?</h3>
+                      <div className='flex flex-col'>
+                        <div className='flex items-center justify-between'>
+                          <label htmlFor="cam">Caméras de surveillance</label>
+                          <input id="cam" type="checkbox" name="type_activity" />
+                        </div>
+                        <div className='flex items-center justify-between'>
+                          <label htmlFor="armes">Armes</label>
+                          <input id="armes" type="checkbox" name="type_activity" />
+                        </div>
+                        <div className='flex items-center justify-between'>
+                          <label htmlFor="pets">Animaux dangereux</label>
+                          <input id="pets" type="checkbox" name="type_activity" />
+                        </div>
+                      </div>
+
+                      <h3 className='mt-10 text-lg font-semibold'>Choses importantes à savoir</h3>
+                      <p className='text-gray-600'>Vous attestez sur l'honneur respecter la législation locale et tout accord passé avec des tiers (tel un contrat de bail). Consultez la Politique de non-discrimination d'Airbnb, ainsi que les frais de voyageur et d'hôte. Mettez à jour vos conditions d'annulation une fois votre annonce publiée.</p>
+                    </div>
+                  }
+
+                  { /* STEP 9 */}
+                  { step === 9 && 
+                    <h3 className='text-lg font-semibold'>Etape 9: Reviews avant de publier</h3>
                   }
 
                 </div>
@@ -268,19 +369,112 @@ export async function getStaticProps() {
     description: "dvgil du kgfd poufhdo dqsnf oupdz vnv ZSDGO8  NGFEZD7b ngfomlubl pùfd b^o_gsfdhbdf dvn hqdfoidfi oiu fo ifd boiowdpfhbdf dfloi f !"
   },{
     _id: "3",
+    img: "https://a0.muscache.com/im/pictures/7ad56bb1-ed9f-4dcb-a14c-2523da331b44.jpg?im_w=240",
+    type: "Logement unique",
+    description: "dvgil du kgfd poufhdo dqsnf oupdz vnv ZSDGO8  NGFEZD7b ngfomlubl pùfd b^o_gsfdhbdf dvn hqdfoidfi oiu fo ifd boiowdpfhbdf dfloi f !"
+  },{
+    _id: "4",
+    img: "https://a0.muscache.com/im/pictures/d52fb4e7-39a4-46df-9bf9-67e56d35eeca.jpg?im_w=240",
+    type: "Chambre d'hôte",
+    description: "dvgil du kgfd poufhdo dqsnf oupdz vnv ZSDGO8  NGFEZD7b ngfomlubl pùfd b^o_gsfdhbdf dvn hqdfoidfi oiu fo ifd boiowdpfhbdf dfloi f !"
+  },{
+    _id: "5",
     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_Y2yw7qnCFqfOgkPmRNGN82jHGdbQ-OWlhw&usqp=CAU",
     type: 'Piscine',
     description: "bbudsvbozusidv  ndszouv zod^_jvùZDPOIM?VC ZDÖPIFGVHZEDoifazepùfvhbre vdpç ghrzov bfdqkmu ,qdsP9%FVRZEUFGOZDSNVEFQ%O8V QREFDZ9HR"
   },{
-    _id: "4",
+    _id: "6",
     img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Green_field.jpg/250px-Green_field.jpg",
     type: 'Champ',
     description: "Vous avez un champ que vous n'utilisez pas, que se soit pour y mettre des animaux, l'utiliser pour l'agriculture ou faire des balo des pailles, metter le en location !"
   }];
 
+  const optionsInLocation = {
+    equipementsCommun: [
+      {
+        _id: '1',
+        name: "Barbecue"
+      },{
+        _id: '2',
+        name: "Picine"
+      },{
+        _id: '3',
+        name: "Jacuzzi"
+      },{
+        _id: '4',
+        name: "Patio"
+      },{
+        _id: '5',
+        name: "Brasero"
+      },{
+        _id: '6',
+        name: "billard"
+      },{
+        _id: '7',
+        name: "Cheminée"
+      },{
+        _id: '8',
+        name: "Espace repas en plain air"
+      },{
+        _id: '9',
+        name: "Appareils de fitness"
+      }
+    ],
+    equipementsVoyageurs: [
+      {
+        _id: '1',
+        name: "Wifi"
+      },{
+        _id: '2',
+        name: "Télévision"
+      },{
+        _id: '3',
+        name: "Cuisine"
+      },{
+        _id: '4',
+        name: "Lave-linge"
+      },{
+        _id: '5',
+        name: "Parking gratuit sur place"
+      },{
+        _id: '6',
+        name: "Parking payent sur place"
+      },{
+        _id: '7',
+        name: "Climatisation"
+      },{
+        _id: '8',
+        name: "Espace de travail dédié"
+      },{
+        _id: '9',
+        name: "Douche extérieure"
+      }
+    ],
+    equipementsSecurite: [
+      {
+        _id: '1',
+        name: "Détecteur de fumée"
+      },{
+        _id: '2',
+        name: "Kit de premiers secours"
+      },{
+        _id: '3',
+        name: "Détecteur de monoxyte de carbone"
+      },{
+        _id: '4',
+        name: "Extincteur"
+      }
+    ]
+  }
+
+
+  
+  
+
   return {
     props : {
-      locationsTypeSelection: locationsTypeSelection,
+      locationsTypeSelection,
+      optionsInLocation,
     }
   }
 }

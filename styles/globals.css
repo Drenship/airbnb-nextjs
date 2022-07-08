@@ -56,4 +56,44 @@
     .sidebar.active {
         @apply right-0 block !important;
     }
+
+    .checkbox-location-option {
+        @apply flex flex-col items-center justify-center w-[9rem] min-h-[9rem] bg-white border-2 shadow-md rounded-lg transition relative cursor-pointer select-none
+            hover:border-blue-500
+    }
+
+    .checkbox-location-icon {
+        @apply w-12 h-12 text-gray-400
+    }
+
+    .checkbox-location-title {
+        @apply text-sm font-semibold text-gray-400 text-center
+    }
+
+    .checkbox-location-option:before {
+        @apply absolute block w-5 h-5 transition-all duration-300 ease-out scale-0 border-2 rounded-full opacity-0 top-1 left-1;
+        content: "";
+        background-color: #fff;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='192' height='192' fill='%23FFFFFF' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' fill='none'%3E%3C/rect%3E%3Cpolyline points='216 72.005 104 184 48 128.005' fill='none' stroke='%23FFFFFF' stroke-linecap='round' stroke-linejoin='round' stroke-width='32'%3E%3C/polyline%3E%3C/svg%3E") !important;
+        background-size: 12px;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+    }
+
+    .checkbox-location-option:hover:before {
+        @apply scale-100 opacity-100;
+    }
+
+    input[type=checkbox]:checked + .checkbox-location-option {
+        @apply border-blue-500 opacity-100;
+    }
+
+    input[type=checkbox]:checked + .checkbox-location-option:before {
+        @apply scale-100 bg-blue-500 border-blue-500 opacity-100;
+    }
+
+    input[type=checkbox]:checked + .checkbox-location-option .checkbox-location-icon, 
+    input[type=checkbox]:checked + .checkbox-location-option .checkbox-location-title {
+        @apply text-blue-500;
+    }
 }

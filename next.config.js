@@ -17,6 +17,7 @@ module.exports = {
     ],
   },
   env: {
+    PORT: 8080,
     mapbox_key: 'pk.eyJ1IjoiZHJlbnNoaXAiLCJhIjoiY2w0c3F0bzVoMHQ4czNlazI4d3NucThjMiJ9.fnstAFHDioX5cmHYFtqXcA'
   }
 }
