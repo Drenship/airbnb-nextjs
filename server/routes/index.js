@@ -3,7 +3,7 @@ const router = express.Router();
 
 function routes(app) {
   router.get("/movies", (req, res) => {
-    res.end("We made it! And it's great");
+    res.status(201).send({movie: "We made it! And it's great"});
   });
   
   router.get("/movies/:id", (req, res) => {

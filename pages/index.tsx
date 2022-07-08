@@ -7,6 +7,7 @@ import SmallCard from '../components/cards/SmallCard'
 import MediumCard from '../components/cards/MediumCard'
 import LargeCard from '../components/cards/LargeCard'
 import Footer from '../components/Footer'
+import { useEffect } from 'react'
 
 interface Props { 
   exploreData: [];
@@ -14,6 +15,16 @@ interface Props {
 }
 
 const Home: NextPage<Props> = ({ exploreData, cardsData }) => {
+
+  useEffect(() => {
+    const testMovie = async () => {
+      const test = await fetch('/api/movies')
+        .then((res) => res.json())
+        .catch((err) => []) 
+        console.log(test)
+    }
+    testMovie()
+  }, []);
 
   return (
     <div className="">
