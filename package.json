@@ -2,24 +2,31 @@
   "private": true,
   "author": "Drenship",
   "scripts": {
-    "dev": "nodemon server/index.js",
+    "dev": "nodemon server/server.js",
     "build": "next build",
-    "start": "NODE_ENV=production node server/index.js"
+    "start": "cross-env NODE_ENV=production node server/server.js"
   },
   "dependencies": {
     "@badrap/bar-of-progress": "^0.2.1",
     "@heroicons/react": "^1.0.6",
     "axios": "^0.27.2",
+    "core-js": "^3.23.3",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
     "date-fns": "^2.28.0",
+    "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "geolib": "^3.3.3",
+    "mongoose": "^6.4.4",
     "next": "latest",
     "nodemon": "^2.0.19",
     "react": "18.1.0",
     "react-date-range": "^1.4.0",
     "react-dom": "18.1.0",
     "react-map-gl": "^6.1.16",
+    "supertokens-node": "^11.0.0",
     "tailwind-scrollbar-hide": "^1.1.7",
+    "tslib": "^2.4.0",
     "zustand": "^4.0.0-rc.1"
   },
   "devDependencies": {

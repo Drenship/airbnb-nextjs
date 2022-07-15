@@ -31,6 +31,7 @@ const Host: NextPage<Props> = ({ locationsTypeSelection, optionsInLocation }) =>
   const [scroll, setScroll] = useState(false)
 
   const [step, setStep] = useState(1)
+  const lastStep = 9;
   const [locationType, setLocationType] = useState(null); // step 1 - input
 
   const [geoLocationSelected, setGeoLocationSelected] = useState(null); // step 4 - coordinate
@@ -43,7 +44,6 @@ const Host: NextPage<Props> = ({ locationsTypeSelection, optionsInLocation }) =>
 
   const [serviceList, setServiceList] = useState<any>([]); // step 7 - array [list]
 
-  const lastStep = 9;
 
   const _backStepFrom = () => {
     const backStep = step > 1 ? (step - 1) : step
@@ -56,6 +56,7 @@ const Host: NextPage<Props> = ({ locationsTypeSelection, optionsInLocation }) =>
       const nextStep = _nextStep ? (1 + step) : step
       setStep(nextStep)
     }
+    
     // step 1
     if(1 === step) {
       const _next = locationType !== null

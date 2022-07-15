@@ -120,7 +120,7 @@ const Profil: NextPage<Props> = ({myLocations}) => {
                 <a className='font-semibold underline active:text-gray-400'>Voire plus</a>
               </Link>
             </div>
-            <div className='grid grid-cols-1 space-x-3'>
+            <div className='grid grid-cols-1'>
               {
                 commentaires?.map((item: any, key: any) => <CommentaireCard 
                   key={key}
