@@ -12,12 +12,7 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
     const server = express();
 
-    server.use(
-        cors({
-            origin: 'localhost:3000',
-            optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-        })
-    );
+    server.use(cors());
     
     mongoose.connect(process.env.MONGO_URL, { 
             useNewUrlParser: true,
