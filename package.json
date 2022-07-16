@@ -3,8 +3,8 @@
   "author": "Drenship",
   "scripts": {
     "dev": "nodemon server/server.js",
-    "build": "next build",
-    "start": "cross-env NODE_ENV=production node server/server.js"
+    "build": "next build && tsc --project tsconfig.server.json",
+    "start": "cross-env NODE_ENV=production node dist/server.js"
   },
   "dependencies": {
     "@badrap/bar-of-progress": "^0.2.1",
