@@ -26,6 +26,7 @@ const Home: NextPage<Props> = ({ exploreData, cardsData }) => {
     testMovie()
   }, []);
 
+
   return (
     <div className="">
       <Head>

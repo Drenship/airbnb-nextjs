@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import _onTextareaAutosize from '../../utils/TextAreaAutosize';
+import _onTextareaAutosize from '../../libs/utils/TextAreaAutosize';
 
 function Step4({ title, setReturnTitle, description, setReturnDescription }) {
 

@@ -33,7 +33,7 @@ function Step3({ geoLocationSelected, setReturnGeoLocationSelected }) {
     useEffect(() => {
         const geolocation = async () => {
             try {
-                const endpoint = `https://api.mapbox.com/geocoding/v5/mapbox.places/${geoLocation}.json?access_token=${process.env.mapbox_key}&autocomplete=true`;
+                const endpoint = `https://api.mapbox.com/geocoding/v5/mapbox.places/${geoLocation}.json?access_token=${process.env.MAPBOX_KEY}&autocomplete=true`;
                 const response = await fetch(endpoint);
                 const results = await response.json();
                 setGeoSuggestList(results?.features);

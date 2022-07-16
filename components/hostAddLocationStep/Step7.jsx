@@ -1,6 +1,6 @@
 import { TicketIcon } from '@heroicons/react/solid'
 import { useRef, useState } from 'react';
-import _onTextareaAutosize from '../../utils/TextAreaAutosize';
+import _onTextareaAutosize from '../../libs/utils/TextAreaAutosize';
 
 function Step7({ setReturnServiceList, serviceList }) {
 

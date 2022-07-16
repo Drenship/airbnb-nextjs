@@ -13,7 +13,7 @@ import Step7 from '../../components/hostAddLocationStep/Step7';
 import NavigationFooter from '../../components/hostAddLocationStep/NavigationFooter';
 
 //utils
-import _onTextareaAutosize from '../../utils/TextAreaAutosize'
+import _onTextareaAutosize from '../../libs/utils/TextAreaAutosize'
 import { CakeIcon } from '@heroicons/react/outline'
 
 
