@@ -3,6 +3,8 @@ import type { NextPage } from 'next'
 import { EyeIcon, UserIcon } from '@heroicons/react/solid'
 import Link from 'next/link'
 import { EyeOffIcon } from '@heroicons/react/outline'
+// dependances 
+import dbConnect from '../../libs/database/dbConnect';
 // components
 import BaseScreen from '../../components/BaseScreen'
 
@@ -17,9 +19,10 @@ const Login: NextPage<Props> = () => {
 
   const [showPass, setShowPass] = useState(false)
 
-  const _onSubmitForm = () => {
-    const form = { email, password }
-    console.log(form)
+  const _onSubmitForm = async () => {
+    const form = { email, password };
+    const db = await dbConnect();
+    console.log(db)
   }
 
   return (

@@ -1,5 +1,7 @@
 import type { NextPage } from 'next'
+import { useEffect } from 'react'
 import Head from 'next/head'
+
 // components
 import Header from '../components/Header'
 import Banner from '../components/Banner'
@@ -7,7 +9,10 @@ import SmallCard from '../components/cards/SmallCard'
 import MediumCard from '../components/cards/MediumCard'
 import LargeCard from '../components/cards/LargeCard'
 import Footer from '../components/Footer'
-import { useEffect } from 'react'
+import Login from './auth/login'
+
+
+
 
 interface Props { 
   exploreData: [];
@@ -25,7 +30,6 @@ const Home: NextPage<Props> = ({ exploreData, cardsData }) => {
     }
     testMovie()
   }, []);
-
 
   return (
     <div className="">
@@ -84,7 +88,7 @@ const Home: NextPage<Props> = ({ exploreData, cardsData }) => {
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
 
   const exploreData = await fetch('https://links.papareact.com/pyp')
     .then((res) => res.json())

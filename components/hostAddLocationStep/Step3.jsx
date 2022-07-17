@@ -38,7 +38,7 @@ function Step3({ geoLocationSelected, setReturnGeoLocationSelected }) {
                 const results = await response.json();
                 setGeoSuggestList(results?.features);
             } catch (error) {
-                console.log("Error fetching data, ", error);
+                throw new Error("Error fetching data, in add location, step 3 : " + Error);
             }
         } 
         
